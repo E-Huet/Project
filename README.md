@@ -1,2 +1,3 @@
 # Project
-feat Alex
+Esther Huet
+Alexandre de Chauveron
