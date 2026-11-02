@@ -1,34 +1,10 @@
 #include "Ennemies.h"
 
-bool Ennemies::CollidingEnemy()
+bool Ennemies::CollidingEnemy(Coordinates coord)
 {
+	if (creatures_x == coord.x && creatures_y == coord.y)
+	{
+		return true;
+	}
 	return false;
-}
-void Ennemies::TakeDamage()
-{
-
-}
-Coordinates Ennemies::GetCoords()
-{
-	return Coordinates();
-}
-int Ennemies::GetDamage()
-{
-	return 0;
-}
-int Ennemies::GetHealth()
-{
-	return 0;
-}
-void Ennemies::SetCoords()
-{
-	
-}
-void Ennemies::SetDamage()
-{
-
-}
-void Ennemies::SetHealth()
-{
-
 }
