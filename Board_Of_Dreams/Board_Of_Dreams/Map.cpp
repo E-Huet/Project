@@ -2,72 +2,29 @@
 #include "Map.h"
 #include "Player.h"
 #include "Ennemies.h"
+#include <random>
+#include <time.h>
+#include "Utilities.h"
 
+
+TailleMap Map::GetSizeMap()
+{
+	return size;
+}
 
 std::vector<int> Map::GetMap()
 {
 	return map;
 }
 
-int Map::GetSize()
+void Map::AddToMap(int value)
 {
-	return size;
+	map.push_back(value);
 }
 
-int Map::GetNbLines()
+void Map::AddToEnnemies(Coordinates coords)
 {
-	return nb_lines;
-}
-
-int Map::GetNbColumns()
-{
-	return nb_columns;
-}
-
-int Map::GetNbEnnemies()
-{
-	return nb_ennemies;
-}
-
-void Map::SetMap(std::vector<int> vector)
-{
-	map = vector;
-}
-
-void Map::SetSize(int value)
-{
-	if (value < 0)
-	{
-		value = 0;
-	}
-	size = value;
-}
-
-void Map::SetNbLines(int value)
-{
-	if (value < 0)
-	{
-		value = 0;
-	}
-	nb_lines = value;
-}
-
-void Map::SetNbColumns(int value)
-{
-	if (value < 0)
-	{
-		value = 0;
-	}
-	nb_columns = value;
-}
-
-void Map::SetNbEnnemies(int value)
-{
-	if (value < 0)
-	{
-		value = 0;
-	}
-	nb_ennemies = value;
+	ennemies.push_back(coords);
 }
 
 void Map::DisplayMap()
@@ -91,11 +48,20 @@ bool Map::CheckLimits()
 
 bool Map::Traversable(Coordinates coords)
 {
+	int temp = coords.TransformMap1D(size);
+	if (map[temp] == 0 || map[temp] == 3)
+	{
+		return true;
+	}
 	return false;
 }
 
 bool Map::Exit(Coordinates coords)
 {
+	int temp = coords.TransformMap1D(size);
+	if (map[temp] == 3)
+	{
+		return true;
+	}
 	return false;
 }
-
