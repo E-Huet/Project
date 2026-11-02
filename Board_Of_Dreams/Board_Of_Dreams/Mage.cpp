@@ -3,7 +3,3 @@
 void Mage::SpellCast()
 {
 }
-
-void Mage::MoveEntity()
-{
-}

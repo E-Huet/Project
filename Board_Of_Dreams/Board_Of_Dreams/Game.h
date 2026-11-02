@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <cstdlib>
 #include <ctime>
+#include "Map.h"
 
 class Game
 {
@@ -11,13 +12,14 @@ class Game
 	bool end = false;
 	bool spellMod = false;
 
+	Map* currentMap = {};
+
 public :
 	void PlayerEvents();
-	void EnnemiesEvents(); // 
-	int GameLoop();  // boucle while : appelle playerEvents 
-					 // puis EnnemiesEvents, puis clear le code
-					 // et fait les vérifs(?) 
-					 // à la fin boucle : appelle EndDelete()
+	int GameLoop();
+
 	void EndDelete();
 	int ChangeMap();
+
+	void GetInstance();
 };
