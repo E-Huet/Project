@@ -8,8 +8,9 @@ private :
 	Coordinates coords = {0,0};
 	int damage = 1;
 	int health = 1;
+	bool canUseSpell = true;
 public:
 	void SpellCast();
-	void MoveEntity();
+	virtual void OnEnnemy() override;
 };
 

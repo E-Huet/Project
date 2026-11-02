@@ -1,7 +1,7 @@
 #include <iostream>
 #include "Map.h"
 #include "Player.h"
-#include "Ennemy.h"
+#include "Ennemies.h"
 
 
 std::vector<int> Map::GetMap()
@@ -98,3 +98,4 @@ bool Map::Exit(Coordinates coords)
 {
 	return false;
 }
+
