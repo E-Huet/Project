@@ -1,37 +1,18 @@
 #include "Player.h"
 
-bool Player::CollidingEnemy()
+bool Player::CollidingEnemy(Coordinates coord)
 {
-	return false;
+	return true;
 }
 
-void Player::TakeDamage()
+char Player::ReadPlayerInput()
 {
+	keyboard = _getch();
+	return keyboard;
 }
 
-Coordinates Player::GetCoords()
+Coordinates Player::GetDirection(Coordinates player)
 {
-	return Coordinates();
-}
-
-int Player::GetDamage()
-{
-	return 0;
-}
-
-int Player::GetHealth()
-{
-	return 0;
-}
-
-void Player::SetCoords()
-{
-}
-
-void Player::SetDamage()
-{
-}
-
-void Player::SetHealth()
-{
+	keyboard = ReadPlayerInput();
+	return Entity::MoveEntity(keyboard, player);
 }
