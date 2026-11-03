@@ -5,30 +5,22 @@
 class Map
 {
     std::vector<int> map = {};
+    std::vector<Coordinates> ennemies = {};
 
-    int size = 0;
-    int nb_lines = 0;
-    int nb_columns = 0;
-    int nb_ennemies = 0;
+    TailleMap size;
+    Coordinates player = {};
 
 public : 
     //Getter
+    TailleMap GetSizeMap();
     std::vector<int> GetMap();
-    int GetSize();
-    int GetNbLines();
-    int GetNbColumns();
-    int GetNbEnnemies();
-
-    //Setter
-    void SetMap(std::vector<int> vector);
-    void SetSize(int value);
-    void SetNbLines(int value);
-    void SetNbColumns(int value);
-    void SetNbEnnemies(int value);
-
-    //Others
-    void DisplayMap();
     bool CheckLimits();
     bool Traversable(Coordinates coords);
     bool Exit(Coordinates coords);
+
+    //Setter
+    void AddToMap(int value);
+    void AddToEnnemies(Coordinates coords);
+
+    void DisplayMap();
 };
