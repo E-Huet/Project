@@ -27,6 +27,11 @@ void Map::AddToEnnemies(Coordinates coords)
 	ennemies.push_back(coords);
 }
 
+void Map::AddToTiles(TileInfo tileinfo)
+{
+	tiles.push_back(tileinfo);
+}
+
 void Map::DisplayMap()
 {
 	//for (int i = 0; i < nb_lines; i++)
@@ -49,11 +54,13 @@ bool Map::CheckLimits()
 bool Map::Traversable(Coordinates coords)
 {
 	int temp = coords.TransformMap1D(size);
-	if (map[temp] == 0 || map[temp] == 3)
-	{
-		return true;
-	}
-	return false;
+	return tiles[temp].IsTraversable();
+}
+
+bool Map::Swimmable(Coordinates coords)
+{
+	int temp = coords.TransformMap1D(size);
+	return tiles[temp].IsSwimmable();
 }
 
 bool Map::Exit(Coordinates coords)
