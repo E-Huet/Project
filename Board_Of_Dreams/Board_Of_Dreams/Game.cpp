@@ -2,6 +2,10 @@
 #include "LevelParser.h"
 #include "Map.h"
 
+void Game::PlayerEvents()
+{
+}
+
 int Game::GameLoop()
 {
     PlayerEvents();

@@ -9,7 +9,6 @@ public :
 	int TransformMap1D(TailleMap taille);
 	int GetX();
 	int GetY();
-
 	void SetXY(int valueX, int valueY);
 
 	int Add(int value, int valueToAdd);
