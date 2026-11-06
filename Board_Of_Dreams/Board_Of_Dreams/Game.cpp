@@ -1,6 +1,8 @@
 #include "Game.h"
 #include "LevelParser.h"
 #include "Map.h"
+#include "Entity.h"
+#include "Player.h"
 
 void Game::PlayerEvents()
 {
@@ -26,7 +28,7 @@ int Game::ChangeMap()
 
 void Game::GetInstance()
 {
-    Map currentMap;
+    Map currentMap = {};
     LevelParser level;
     level.GetFromFile(level.GetPathMap1(), currentMap);
 

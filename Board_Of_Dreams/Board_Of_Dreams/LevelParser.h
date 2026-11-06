@@ -4,7 +4,7 @@
 #include <string>
 #include <fstream>
 
-static class LevelParser
+class LevelParser
 {
 	std::string pathMap1 = "map1.txt";
 	std::string pathMap2 = " ";

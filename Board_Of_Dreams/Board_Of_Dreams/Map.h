@@ -5,10 +5,7 @@
 class Map
 {
     std::vector<int> map = {};
-    std::vector<Coordinates> ennemies = {};
-
     TailleMap size;
-    Coordinates player = {};
 
 public : 
     //Getter
