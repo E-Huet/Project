@@ -51,7 +51,7 @@ void Game::Display()
 
 void Game::GetInstance()
 {
-    Map currentMap;
+    Map currentMap = {};
     LevelParser level;
     level.GetFromFile(level.GetPathMap1(), currentMap);
 

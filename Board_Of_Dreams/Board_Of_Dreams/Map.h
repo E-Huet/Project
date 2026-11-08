@@ -10,7 +10,6 @@ class Map
     std::vector<TileInfo> tiles = {};
 
     TailleMap size;
-    Coordinates player = {};
 
 public : 
     //Getter

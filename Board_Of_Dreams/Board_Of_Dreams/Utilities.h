@@ -1,21 +1,5 @@
 #pragma once
 
-static struct Coordinates
-{
-private :
-	int x = 0;
-	int y = 0;
-public :
-	int TransformMap1D(TailleMap taille);
-	int GetX();
-	int GetY();
-
-	void SetXY(int valueX, int valueY);
-
-	int Add(int value, int valueToAdd);
-	bool CompareEqualityCoords(Coordinates coord, Coordinates coord2);
-};
-
 class TailleMap
 {
 private:
@@ -34,4 +18,19 @@ public:
 	void SetNbLines(int value);
 	void SetNbColumns(int value);
 	void SetNbEnnemies(int value);
+};
+
+struct Coordinates
+{
+private :
+	int x = 0;
+	int y = 0;
+public :
+	int TransformMap1D(TailleMap taille);
+	int GetX();
+	int GetY();
+	void SetXY(int valueX, int valueY);
+
+	int Add(int value, int valueToAdd);
+	bool CompareEqualityCoords(Coordinates coord, Coordinates coord2);
 };

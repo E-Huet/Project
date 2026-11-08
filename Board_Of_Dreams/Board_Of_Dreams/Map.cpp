@@ -24,7 +24,7 @@ void Map::AddToMap(int value)
 
 void Map::AddToEnnemies(Coordinates coords)
 {
-	ennemies.push_back(coords);
+	return;
 }
 
 void Map::AddToTiles(TileInfo tileinfo)

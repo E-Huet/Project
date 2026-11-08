@@ -21,6 +21,16 @@ void Coordinates::SetXY(int valueX, int valueY)
 	y = valueY;
 }
 
+int Coordinates::Add(int value, int valueToAdd)
+{
+	return value + valueToAdd;
+}
+
+bool Coordinates::CompareEqualityCoords(Coordinates coord, Coordinates coord2)
+{
+	return coord.GetX() ==coord2.GetX() && coord.GetY() == coord2.GetY();
+}
+
 int TailleMap::GetSize()
 {
 	return size;

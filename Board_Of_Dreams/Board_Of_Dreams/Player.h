@@ -5,14 +5,13 @@
 class Player : public Entity
 {
 protected:
-	virtual ~Player() = default;
+	virtual ~Player() = default; //détruit la classe à la fin 
 public:
-	virtual bool CollidingEnemy(Coordinates coord) override;
-	char ReadPlayerInput();
-	Coordinates GetDirection(Coordinates player);
-	virtual void OnEnnemy() = 0;
+	virtual bool CollidingEnemy(Coordinates coord) override; //renvoie vrai si le Player partage une case avec un Ennemies
+	virtual void MoveEntity(char keyboad, Coordinates direction) override;//Prend un char et les coordonnées actuelles du Player pour le déplacer  selon le char
+	char ReadPlayerInput();//lit l'input du Player
+	virtual void OnEnnemy() = 0;//le Warrior et le Mage ont des interractions différentes en touchant un ennemi
 
 private:
 	char keyboard = 'a';
-	Coordinates player = { 0,0 };
 };
