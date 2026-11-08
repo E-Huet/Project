@@ -32,20 +32,6 @@ void Map::AddToTiles(TileInfo tileinfo)
 	tiles.push_back(tileinfo);
 }
 
-void Map::DisplayMap()
-{
-	//for (int i = 0; i < nb_lines; i++)
-	//{
-	//	for (int j = 0; j < nb_columns; j++)
-	//	{
-	//		if (player.GetCoordX() == j && player.GetCoordY() == i)
-	//		{
-	//			std::cout << 'H';
-	//		}
-	//		
-	//}
-}
-
 bool Map::CheckLimits()
 {
 	return false;

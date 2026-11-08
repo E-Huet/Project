@@ -14,10 +14,12 @@ class Game
 
 	Map* currentMap = {};
 
-	int GameLoop();
+	int GameLoop(Entity player);
 
 	void EndDelete();
 	int ChangeMap();
+
+	void Display();
 
 public :
 	void GetInstance();
