@@ -1,6 +1,6 @@
 #pragma once
 #include "Player.h"
-class Warrior : Player
+class Warrior : public Player
 {
 protected:
 	virtual ~Warrior() = default;
