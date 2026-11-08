@@ -27,18 +27,9 @@ void Map::AddToEnnemies(Coordinates coords)
 	return;
 }
 
-void Map::DisplayMap()
+void Map::AddToTiles(TileInfo tileinfo)
 {
-	//for (int i = 0; i < nb_lines; i++)
-	//{
-	//	for (int j = 0; j < nb_columns; j++)
-	//	{
-	//		if (player.GetCoordX() == j && player.GetCoordY() == i)
-	//		{
-	//			std::cout << 'H';
-	//		}
-	//		
-	//}
+	tiles.push_back(tileinfo);
 }
 
 bool Map::CheckLimits()
@@ -49,11 +40,13 @@ bool Map::CheckLimits()
 bool Map::Traversable(Coordinates coords)
 {
 	int temp = coords.TransformMap1D(size);
-	if (map[temp] == 0 || map[temp] == 3)
-	{
-		return true;
-	}
-	return false;
+	return tiles[temp].IsTraversable();
+}
+
+bool Map::Swimmable(Coordinates coords)
+{
+	int temp = coords.TransformMap1D(size);
+	return tiles[temp].IsSwimmable();
 }
 
 bool Map::Exit(Coordinates coords)

@@ -14,6 +14,7 @@ void LevelParser::GetFromFile(std::string path, Map& map)
     int linesCounter = 0;
     int columnsCounter = 0;
     int ennemiesCounter = 0;
+    TileInfo tile;
 
     while (std::getline(fichier, ligne))
     {
@@ -23,22 +24,32 @@ void LevelParser::GetFromFile(std::string path, Map& map)
             if (ligne[i] == '.')
             {
                 map.AddToMap(0);
+                tile.SetAll('.', true, false);
+                map.AddToTiles(tile);
             }
             else if (ligne[i] == 'A')
             {
                 map.AddToMap(1);
+                tile.SetAll('A', false, false);
+                map.AddToTiles(tile);
             }
             else if (ligne[i] == '~')
             {
                 map.AddToMap(2);
+                tile.SetAll('~', false, true);
+                map.AddToTiles(tile);
             }
             else if (ligne[i] == 'E')
             {
                 map.AddToMap(3);
+                tile.SetAll('E', true, false);
+                map.AddToTiles(tile);
             }
             if (ligne[i] == 'X')
             {
                 map.AddToMap(0);
+                tile.SetAll('.', true, false);
+                map.AddToTiles(tile);
                 ennemiesCounter++;
                 Coordinates coords;
                 coords.SetXY(i, columnsCounter);
