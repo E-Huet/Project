@@ -2,12 +2,18 @@
 #include "Player.h"
 class Mage : public Player
 {
-	~Mage() = default;
-	int damage = 1;
-	int health = 1;
-	bool canUseSpell = true;
 public:
-	void SpellCast();//Le sort
-	virtual void OnEnnemy() override;//se prend juste des dégats
-};
+	static constexpr int spellRange = 1;   // 1 = les 8 cases autour du lanceur
 
+	Mage(Coordinates startCoords) : Player(startCoords, 2, 1) {}
+	~Mage() override = default;
+
+	std::string ClassName() const override { return "Mage"; }
+
+	bool CanUseSpell() const override { return true; }
+	bool SpellCast(EnnemyList& ennemies) override;
+
+	// Le sort lui-même, en fonction statique : WarriorMage peut le réutiliser
+	// sans hériter de Mage.
+	static bool CastAreaSpell(const Entity& caster, EnnemyList& ennemies);
+};
