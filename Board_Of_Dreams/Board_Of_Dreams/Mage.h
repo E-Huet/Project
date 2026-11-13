@@ -13,7 +13,5 @@ public:
 	bool CanUseSpell() const override { return true; }
 	bool SpellCast(EnnemyList& ennemies) override;
 
-	// Le sort lui-même, en fonction statique : WarriorMage peut le réutiliser
-	// sans hériter de Mage.
 	static bool CastAreaSpell(const Entity& caster, EnnemyList& ennemies);
 };
