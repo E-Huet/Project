@@ -2,14 +2,12 @@
 #include "Player.h"
 class Mage : public Player
 {
-protected:
-	virtual ~Mage() = default;
-private :
+	~Mage() = default;
 	int damage = 1;
 	int health = 1;
 	bool canUseSpell = true;
 public:
 	void SpellCast();//Le sort
-	virtual void OnEnnemy() override;//se prend juste des dégats
+	virtual void OnEnnemy() override;//se prend juste des dÃ©gats
 };
 
