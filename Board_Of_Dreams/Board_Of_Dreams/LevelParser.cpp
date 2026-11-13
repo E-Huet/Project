@@ -6,6 +6,7 @@
 
 bool LevelParser::GetFromFile(std::string path, Map& map)
 {
+    map.Clear();
     std::ifstream file(path);
     std::string ligne;
     if (!file) {
@@ -19,7 +20,7 @@ bool LevelParser::GetFromFile(std::string path, Map& map)
         for (int i = 0; i < ligne.length(); i++){
             char character = ligne[i];
             int value = 0;
-            if (character == 'A') value = 1;
+            if (character == 'M') value = 1;
             else if (character == '~') value = 2;
             else if (character == 'E') value = 3;
             else if (character == 'X') {

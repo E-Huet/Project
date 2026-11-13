@@ -1,7 +1,4 @@
 #pragma once
-#include <conio.h>
-#include <cstdlib>
-#include <ctime>
 #include "Map.h"
 #include "Entity.h"
 
@@ -11,10 +8,10 @@ class Game
 	Map currentMap;
 
 	int GameLoop(Entity* player);
-	void EndDelete();
 	int ChangeMap();
 	void InitializeMap();
-	void Display(Map map);
+	void Display();
+	void Spell();
 
 	static Game* object;
 

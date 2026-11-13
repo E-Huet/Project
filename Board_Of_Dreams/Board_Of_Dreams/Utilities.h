@@ -14,6 +14,7 @@ public:
 	int GetNbColumns();
 	int GetNbEnnemies();
 
+	void SubstractEnnemy();
 	void SetAll(int size, int nbLines, int nbColumns, int nbEnnemies);
 };
 
@@ -29,5 +30,4 @@ public :
 	void SetXY(int valueX, int valueY);
 
 	int Add(int value, int valueToAdd);
-	bool CompareEqualityCoords(Coordinates coord, Coordinates coord2);
 };

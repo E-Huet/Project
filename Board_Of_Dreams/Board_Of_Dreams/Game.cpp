@@ -14,7 +14,6 @@ int Game::GameLoop(Entity* player)
     bool end = false;
     while (end == false)
     {
-        bool spellMod = false;
         bool action = false;
 
         while (action == false)
@@ -33,11 +32,9 @@ int Game::GameLoop(Entity* player)
                     action = true;
                 }
             }
-
-
-            /// Bouger ennemis -> il me faut les fonctions d'Alex
-
         }
+        /// Bouger ennemis -> il me faut les fonctions d'Alex
+
         /// Vérifs de fins et de PV
         action = false;
         system("cls");
@@ -54,16 +51,11 @@ int Game::GameLoop(Entity* player)
         }
         else
         {
-            Display(currentMap);
+            Display();
         }
         
     }
     return 0;
-}
-
-void Game::EndDelete()
-{
-    return;
 }
 
 int Game::ChangeMap()
@@ -109,7 +101,7 @@ void Game::Display()
                 }
                 else if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 1 && ennemi == false)
                 {
-                    std::cout << 'A';
+                    std::cout << 'M';
                 }
                 else if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 2 && ennemi == false)
                 {
@@ -123,6 +115,26 @@ void Game::Display()
             }
         }
         std::cout << std::endl;
+    }
+}
+
+void Game::Spell()
+{
+    Coordinates coordsEnnemy = currentMap.GetCoordsPlayer();
+    for (int i = -1; i < 2; i++)
+    {
+        for (int j = -1; j < 2; j++)
+        {
+            if (i == 0 && j == 0)
+            {
+                continue;
+            }
+            coordsEnnemy.SetXY(currentMap.GetCoordsPlayer().GetX() + i, currentMap.GetCoordsPlayer().GetY() + j);
+            if (currentMap.InEnnemies(coordsEnnemy) != -1)
+            {
+                currentMap.RemoveEnemy(coordsEnnemy);
+            }
+        }
     }
 }
 
@@ -160,5 +172,4 @@ void Game::Run()
     }
     system("cls");
     GameLoop(player);
-    EndDelete();
 }

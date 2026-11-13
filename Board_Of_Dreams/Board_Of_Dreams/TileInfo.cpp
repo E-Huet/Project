@@ -21,5 +21,3 @@ void TileInfo::SetAll(char character, bool boolTraversable, bool boolSwimmable)
     traversable = boolTraversable;
     swimmable = boolSwimmable;
 }
-
-

@@ -23,6 +23,7 @@ public :
     bool Swimmable(Coordinates coords);
     bool Exit(Coordinates coords);
     Coordinates GetCoordsPlayer();
+    Coordinates GetEnnemy(int index);
     int InEnnemies(Coordinates coords);
 
     //Setter

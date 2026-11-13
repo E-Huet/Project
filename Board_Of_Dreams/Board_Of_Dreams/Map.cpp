@@ -63,7 +63,11 @@ void Map::Clear()
 void Map::RemoveEnemy(Coordinates coordsEnnemies)
 {
 	int index = InEnnemies(coordsEnnemies);
-	ennemies.erase(ennemies.begin() + index);
+	if (index != -1)
+	{
+		ennemies.erase(ennemies.begin() + index);
+	}
+	size.SubstractEnnemy();
 }
 
 bool Map::Traversable(Coordinates coords)
@@ -102,6 +106,14 @@ bool Map::Exit(Coordinates coords)
 Coordinates Map::GetCoordsPlayer()
 {
 	return coordsPlayer;
+}
+
+Coordinates Map::GetEnnemy(int index)
+{
+	if (index >= 0 && index < GetSizeMap().GetNbEnnemies())
+	{
+		return ennemies[index];
+	}
 }
 
 int Map::InEnnemies(Coordinates coords)
