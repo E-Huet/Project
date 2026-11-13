@@ -30,10 +30,6 @@ void Entity::ApplyDamage(int damageTaken)
 {
 	SetHealth(health -= damageTaken);
 }
-void Entity::Kill()
-{
-	health = 0;
-}
 
 bool Entity::IsAlive() const
 {
