@@ -16,7 +16,7 @@ public:
 };
 
 // Tous les ennemis du niveau 
-using EnnemyList = std::vector<std::unique_ptr<Ennemies>>;
+using EnnemyList = std::vector<<Ennemies>;
 
 Ennemies* EnnemyAt(const EnnemyList& ennemies, Coordinates coords); // nullptr si aucun
 void RemoveDead(EnnemyList& ennemies);
