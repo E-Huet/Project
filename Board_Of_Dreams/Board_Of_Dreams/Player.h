@@ -19,4 +19,6 @@ public:
 }
 	virtual bool castSpell(EnemyList& enemy)
 { return false; }
+
+int health=2;
 };
