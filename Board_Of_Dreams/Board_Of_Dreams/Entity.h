@@ -15,7 +15,6 @@ public:
 	void SetDamage(int value);
 
 	void ApplyDamage(int damageTaken);
-	void Kill();
 	bool IsAlive() const;
 virtual bool CanSwim() const;
 bool MoveEntity(char direction, const Map& map);
