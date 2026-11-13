@@ -2,10 +2,12 @@
 #include "Player.h"
 class Warrior : public Player
 {
-	~Warrior() = default;
-	int damage = 2;
-	int health = 3;
-	bool canUseSpell = false;
 public:
-	virtual void OnEnnemy() override;//inflige des dégats sur l'Ennemies
+	Warrior(Coordinates startCoords) : Player(startCoords, 3, 2) {}
+	~Warrior() override = default;
+
+	std::string ClassName() const override { return "Guerrier"; }
+
+	// Inflige ses dégâts à l'ennemi, et subit les dégâts de l'ennemi en recul.
+	bool OnEnnemy(Ennemies& ennemy) override;
 };
