@@ -1,6 +1,6 @@
 #include "Utilities.h"
 
-int Coordinates::TransformMap1D(TailleMap taille)
+int Coordinates::TransformMap1D(SizeMap taille)
 {
 	return (y* taille.GetNbColumns() + x);
 }
@@ -31,42 +31,30 @@ bool Coordinates::CompareEqualityCoords(Coordinates coord, Coordinates coord2)
 	return coord.GetX() ==coord2.GetX() && coord.GetY() == coord2.GetY();
 }
 
-int TailleMap::GetSize()
+int SizeMap::GetSize()
 {
 	return size;
 }
 
-int TailleMap::GetNbLines()
+int SizeMap::GetNbLines()
 {
 	return nbLines;
 }
 
-int TailleMap::GetNbColumns()
+int SizeMap::GetNbColumns()
 {
 	return nbColumns;
 }
 
-int TailleMap::GetNbEnnemies()
+int SizeMap::GetNbEnnemies()
 {
 	return nbEnnemies;
 }
 
-void TailleMap::SetSize(int value)
+void SizeMap::SetAll(int newSize, int newNbLines, int newNbColumns, int newNbEnnemies)
 {
-	size = value;
-}
-
-void TailleMap::SetNbLines(int value)
-{
-	nbLines = value;
-}
-
-void TailleMap::SetNbColumns(int value)
-{
-	nbColumns = value;
-}
-
-void TailleMap::SetNbEnnemies(int value)
-{
-	nbEnnemies = value;
+	size = newSize;
+	nbLines = newNbLines;
+	nbColumns = newNbColumns;
+	nbEnnemies = newNbEnnemies;
 }

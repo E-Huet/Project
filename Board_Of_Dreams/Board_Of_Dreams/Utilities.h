@@ -1,6 +1,6 @@
 #pragma once
 
-class TailleMap
+class SizeMap
 {
 private:
 	int size = 0;
@@ -14,10 +14,7 @@ public:
 	int GetNbColumns();
 	int GetNbEnnemies();
 
-	void SetSize(int value);
-	void SetNbLines(int value);
-	void SetNbColumns(int value);
-	void SetNbEnnemies(int value);
+	void SetAll(int size, int nbLines, int nbColumns, int nbEnnemies);
 };
 
 struct Coordinates
@@ -26,7 +23,7 @@ private :
 	int x = 0;
 	int y = 0;
 public :
-	int TransformMap1D(TailleMap taille);
+	int TransformMap1D(SizeMap taille);
 	int GetX();
 	int GetY();
 	void SetXY(int valueX, int valueY);

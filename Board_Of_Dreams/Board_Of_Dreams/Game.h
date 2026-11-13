@@ -6,21 +6,18 @@
 
 class Game
 {
-	int map = 1;
-	bool action = false;
-	bool gameOver = false;
-	bool end = false;
-	bool spellMod = false;
+	int nbMap = 1;
+	static Map currentMap;
 
-	Map* currentMap = {};
-
-	int GameLoop(Entity player);
-
+	int GameLoop(Map map, Entity* player);
 	void EndDelete();
 	int ChangeMap();
-
-	void Display();
+	void Display(Map map);
 
 public :
-	void GetInstance();
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
+
+	static Game* GetInstance();
+	void Run();
 };
