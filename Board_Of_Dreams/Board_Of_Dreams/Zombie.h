@@ -1,11 +1,19 @@
 #pragma once
 #include "Ennemies.h"
-class Zombie:Ennemies
+
+class Zombie : public Ennemies
 {
-protected:
-	virtual ~Zombie() = default;
+public:
+	Zombie(Coordinates startCoords, char entitySymbol = 'Z')
+		: Entity(startCoords, entitySymbol, 1, 1),
+		  Ennemies(startCoords, entitySymbol, 1, 1)
+	{
+	}
+	~Zombie() override = default;
+
+	void Act(const Entity& target, const Map& map) override;
+
 private:
-	int damage = 1;
-	int health = 1;
+	int turnCounter = 0;
 };
 
