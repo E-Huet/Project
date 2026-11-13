@@ -1,11 +1,13 @@
 #pragma once
-#include "Ennemies.h"
-class ZombieSwimmer :Ennemies
+class ZombieSwimmer : public Zombie, public Swimmer
 {
-	protected:
-		virtual ~ZombieSwimmer() = default;
-	private:
-		int damage = 1;
-		int health = 1;
+public:
+	ZombieSwimmer(Coordinates startCoords)
+		: Entity(startCoords, 'S', 1, 1),
+		  Zombie(startCoords, 'S'),
+		  Swimmer()
+	{
+	}
+	~ZombieSwimmer() override = default;
 };
 

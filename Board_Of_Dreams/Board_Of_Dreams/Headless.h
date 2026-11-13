@@ -1,11 +1,15 @@
 #pragma once
 #include "Ennemies.h"
-class Headless:Ennemies
+class Headless : public Ennemies
 {
-protected:
-	virtual ~Headless() = default;
-private:
-	int damage = 1;
-	int health = 1;
+public:
+	Headless(Coordinates startCoords)
+		: Entity(startCoords, 'X', 1, 1),
+		  Ennemies(startCoords, 'X', 1, 1)
+	{
+	}
+	~Headless() override = default;
+
+	void Act(const Entity& target, const Map& map, const EnnemyList& ennemies) override;
 };
 
