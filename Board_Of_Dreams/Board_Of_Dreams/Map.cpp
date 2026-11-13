@@ -19,7 +19,7 @@ std::vector<int> Map::GetMap()
 
 bool Map::InLimitsMap(Coordinates coords)
 {
-	if (coords.GetX() > GetSizeMap().GetNbColumns() || coords.GetY() > GetSizeMap().GetNbLines() || coords.GetX() < 0 || coords.GetY() < 0)
+	if (coords.GetX() >= GetSizeMap().GetNbColumns() || coords.GetY() >= GetSizeMap().GetNbLines() || coords.GetX() < 0 || coords.GetY() < 0)
 	{
 		return false;
 	}
@@ -46,6 +46,26 @@ void Map::SetCoordsPlayer(int x, int y)
 	coordsPlayer.SetXY(x, y);
 }
 
+void Map::SetSizeMap(int newSize, int lines, int columns, int enemies)
+{
+	size.SetAll(newSize, lines, columns, enemies);
+}
+
+void Map::Clear()
+{
+	map.clear();
+	ennemies.clear();
+	tiles.clear();
+	coordsPlayer.SetXY(0, 0);
+	size.SetAll(0, 0, 0, 0);
+}
+
+void Map::RemoveEnemy(Coordinates coordsEnnemies)
+{
+	int index = InEnnemies(coordsEnnemies);
+	ennemies.erase(ennemies.begin() + index);
+}
+
 bool Map::Traversable(Coordinates coords)
 {
 	if (InLimitsMap(coords))
@@ -68,10 +88,13 @@ bool Map::Swimmable(Coordinates coords)
 
 bool Map::Exit(Coordinates coords)
 {
-	int temp = coords.TransformMap1D(size);
-	if (map[temp] == 3)
+	if (InLimitsMap(coords))
 	{
-		return true;
+		int temp = coords.TransformMap1D(size);
+		if (map[temp] == 3)
+		{
+			return true;
+		}
 	}
 	return false;
 }

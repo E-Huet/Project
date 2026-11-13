@@ -7,12 +7,12 @@ char TileInfo::GetSymbol()
 
 bool TileInfo::IsTraversable()
 {
-    return false;
+    return traversable;
 }
 
 bool TileInfo::IsSwimmable()
 {
-    return false;
+    return swimmable;
 }
 
 void TileInfo::SetAll(char character, bool boolTraversable, bool boolSwimmable)
