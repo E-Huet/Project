@@ -6,24 +6,28 @@
 class Map
 {
     std::vector<int> map = {};
-    std::vector<Coordinates> ennemies = {};
+    SizeMap size;
     std::vector<TileInfo> tiles = {};
 
-    TailleMap size;
+    Coordinates coordsPlayer;
+
+    std::vector<Coordinates> ennemies = {};
+
 
 public : 
     //Getter
-    TailleMap GetSizeMap();
+    SizeMap GetSizeMap();
     std::vector<int> GetMap();
-    bool CheckLimits();
+    bool InLimitsMap(Coordinates coords);
     bool Traversable(Coordinates coords);
     bool Swimmable(Coordinates coords);
     bool Exit(Coordinates coords);
+    Coordinates GetCoordsPlayer();
+    int InEnnemies(Coordinates coords);
 
     //Setter
     void AddToMap(int value);
     void AddToEnnemies(Coordinates coords);
     void AddToTiles(TileInfo tileinfo);
-
-    void DisplayMap();
+    void SetCoordsPlayer(int x, int y);
 };

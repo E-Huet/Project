@@ -11,4 +11,3 @@ private:
 public:
 	virtual void OnEnnemy() override;//inflige des dégats sur l'Ennemies
 };
-
