@@ -7,7 +7,7 @@ class Game
 	int nbMap = 1;
 	Map currentMap;
 
-	int GameLoop(Entity* player);
+	int GameLoop(Player* player);
 	int ChangeMap();
 	void InitializeMap();
 	void Display();

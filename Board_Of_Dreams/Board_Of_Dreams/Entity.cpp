@@ -3,8 +3,12 @@
 #include "TileInfo.h"
 
 Entity::Entity(Coordinates startCoords, char entitySymbol, int startHealth, int startDamage)
-	: coords(startCoords), symbol(entitySymbol), health(startHealth), damage(startDamage)
+	: coords(startCoords), health(startHealth), damage(startDamage)
 {
+}
+Coordinates Entity::GetCoords() const
+{
+	return coords;
 }
 int Entity::GetDamage() const
 {
@@ -47,8 +51,6 @@ bool Entity::CanSwim() const
 
 bool Entity::DirectionTo(char direction, int& dx, int& dy)
 {
-	dx = 0;
-	dy = 0;
 	switch (direction)
 	{
 	case 'z':
@@ -68,26 +70,12 @@ bool Entity::DirectionTo(char direction, int& dx, int& dy)
 	}
 }
 
-bool Entity::IsDirectionKey(char c)
+Coordinates Entity::MoveEntity(char direction, Coordinates coordsEntity)
 {
 	int dx = 0;
 	int dy = 0;
-	return DirectionTo(c, dx, dy);
-}
+	DirectionTo(direction, dx, dy);
 
-bool Entity::MoveEntity(char direction, const Map& map, const BlockedFn& isBlocked)
-{
-	int dx = 0;
-	int dy = 0;
-	if (!DirectionToDelta(direction, dx, dy))
-	{
-		return false;
-	}
-	Coordinates next(coords.GetX() + dx, coords.GetY() + dy);
-	if (!CanEnter(next, map))//C'est la fonction qui verifie si tu peux te deplacer que tu veux faire dans Map
-	{
-		return false;
-	}
-	coords = next;
-	return true;
+	coordsEntity.SetXY(coordsEntity.GetX() + dx, coordsEntity.GetY() + dy);
+	return coordsEntity;
 }

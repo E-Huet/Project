@@ -2,6 +2,7 @@
 #include <vector>
 #include "Utilities.h"
 #include "TileInfo.h"
+#include "Ennemies.h"
 
 class Map
 {
@@ -12,7 +13,6 @@ class Map
     Coordinates coordsPlayer;
 
     std::vector<Coordinates> ennemies = {};
-
 
 public : 
     //Getter

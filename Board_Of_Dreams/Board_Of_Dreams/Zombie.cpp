@@ -1,4 +1,4 @@
-include "Zombie.h"
+#include "Zombie.h"
 #include <cstdlib>
 #include <vector>
 namespace
@@ -24,13 +24,13 @@ namespace
 		return horizontal;
 	}
 
-void Zombie::Act(const Entity& target, const Map& map)
+void Zombie::Move(const Entity& target, Coordinates coords)
 {
 	int dx = target.GetCoords().GetX() - GetCoords().GetX();
 	int dy = target.GetCoords().GetY() - GetCoords().GetY();
 	for (char direction : BuildOrder(dx, dy))
 	{
-		if (MoveEntity(direction, map))
+		if (MoveEntity(direction, coords))
 		{
 			return;
 		}

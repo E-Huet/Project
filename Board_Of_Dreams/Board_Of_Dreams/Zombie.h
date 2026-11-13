@@ -11,9 +11,8 @@ public:
 	}
 	~Zombie() override = default;
 
-	void Act(const Entity& target, const Map& map) override;
+	void Move(const Entity& target, Coordinates coords) override;
 
 private:
 	int turnCounter = 0;
 };
-

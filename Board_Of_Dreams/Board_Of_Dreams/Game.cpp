@@ -9,7 +9,7 @@
 #include <iostream>
 #include <conio.h>
 
-int Game::GameLoop(Entity* player)
+int Game::GameLoop(Player* player)
 {
     bool end = false;
     while (end == false)
@@ -21,7 +21,10 @@ int Game::GameLoop(Entity* player)
             char keyboard = _getch();
             if (keyboard == 'p')
             {
-
+                if (player->CanUseSpell())
+                {
+                    Spell();
+                }
             }
             else
             {
@@ -33,9 +36,12 @@ int Game::GameLoop(Entity* player)
                 }
             }
         }
-        /// Bouger ennemis -> il me faut les fonctions d'Alex
+        for (int i = 0; i < currentMap.GetSizeMap().GetNbEnnemies(); i++)
+        {
+            Ennemies* ennemy;
+            ennemy = 
+        }
 
-        /// Vérifs de fins et de PV
         action = false;
         system("cls");
 
@@ -152,7 +158,7 @@ void Game::Run()
 
     Warrior warrior;
     Mage mage;
-    Entity* player;
+    Player* player;
     std::cout << "1 : Warrior | 2 : Mage\n--> ";
     int choice = 0;
     while (true)

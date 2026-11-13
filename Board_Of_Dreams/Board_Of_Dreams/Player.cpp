@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(int x, int y, int health)
-	: Entity(x, y, health)
+Player::Player(Coordinates startCoords, int health, int damage)
+    : Entity(startCoords, 'H', health, damage)
 {
 }

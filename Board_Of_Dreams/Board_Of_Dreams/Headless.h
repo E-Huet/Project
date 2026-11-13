@@ -10,6 +10,5 @@ public:
 	}
 	~Headless() override = default;
 
-	void Act(const Entity& target, const Map& map, const EnnemyList& ennemies) override;
+	void Move(const Entity& target, Coordinates coords) override;
 };
-

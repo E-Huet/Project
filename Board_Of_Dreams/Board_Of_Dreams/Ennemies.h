@@ -1,5 +1,7 @@
 #pragma once
 #include "Entity.h"
+#include <vector>
+
 class Ennemies : virtual public Entity
 {
 public:
@@ -12,13 +14,5 @@ public:
 	bool CollidingEnemy(Coordinates coord) const;
 
 	// Tour de l'ennemi. 
-	virtual void Act(const Entity& target, const Map& map) = 0;
-};
-
-// Tous les ennemis du niveau 
-using EnnemyList = std::vector<std::unique_ptr<Ennemies>>;
-
-Ennemies* EnnemyAt(const EnnemyList& ennemies, Coordinates coords); // nullptr si aucun
-void RemoveDead(EnnemyList& ennemies);
-
+	virtual void Move(const Entity& target, Coordinates coords) = 0;
 };

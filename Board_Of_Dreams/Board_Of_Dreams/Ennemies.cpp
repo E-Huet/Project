@@ -3,7 +3,7 @@
 
 bool Ennemies::CollidingEnemy(Coordinates coord) const
 {
-	return GetCoords() == coord;
+	return SetCoords(coord);
 }
 
 Ennemies* EnnemyAt(const EnnemyList& ennemies, Coordinates coords)
