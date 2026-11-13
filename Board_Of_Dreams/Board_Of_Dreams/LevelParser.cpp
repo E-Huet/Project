@@ -4,13 +4,13 @@
 #include <fstream>
 #include "Map.h"
 
-void LevelParser::GetFromFile(std::string path, Map& map)
+bool LevelParser::GetFromFile(std::string path, Map& map)
 {
     std::ifstream file(path);
     std::string ligne;
     if (!file) {
         std::cout << "Impossible d'ouvrir le fichier";
-        return;}
+        return false;}
     int linesCounter = 0, columnsCounter = 0, ennemiesCounter = 0;
     TileInfo tile;
     while (std::getline(file, ligne))
@@ -33,8 +33,9 @@ void LevelParser::GetFromFile(std::string path, Map& map)
             map.AddToTiles(tile);
             columnsCounter++;}
         linesCounter++;}
-    map.GetSizeMap().SetAll(columnsCounter * linesCounter, linesCounter, columnsCounter, ennemiesCounter);
+    map.SetSizeMap(columnsCounter * linesCounter, linesCounter, columnsCounter, ennemiesCounter);
     file.close();
+    return true;
 }
 
 std::string LevelParser::GetPathMap1()

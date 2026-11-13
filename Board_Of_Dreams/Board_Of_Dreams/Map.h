@@ -30,4 +30,7 @@ public :
     void AddToEnnemies(Coordinates coords);
     void AddToTiles(TileInfo tileinfo);
     void SetCoordsPlayer(int x, int y);
+    void SetSizeMap(int size, int lines, int columns, int enemies);
+    void Clear();
+    void RemoveEnemy(Coordinates coordsEnnemi);
 };

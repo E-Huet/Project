@@ -6,14 +6,14 @@
 
 class LevelParser
 {
-	std::string pathMap1 = "map1.txt";
-	std::string pathMap2 = " ";
-	std::string pathMap3 = " ";
+	std::string pathMap1 = "map0.txt";
+	std::string pathMap2 = "map1.txt";
+	std::string pathMap3 = "map2.txt";
 
 public :
 	std::string GetPathMap1();
 	std::string GetPathMap2();
 	std::string GetPathMap3();
 
-	void GetFromFile(std::string path, Map& map);
+	bool GetFromFile(std::string path, Map& map);
 };

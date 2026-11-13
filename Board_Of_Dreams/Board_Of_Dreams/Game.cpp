@@ -9,7 +9,7 @@
 #include <iostream>
 #include <conio.h>
 
-int Game::GameLoop(Map map, Entity* player)
+int Game::GameLoop(Entity* player)
 {
     bool end = false;
     while (end == false)
@@ -20,11 +20,20 @@ int Game::GameLoop(Map map, Entity* player)
         while (action == false)
         {
             char keyboard = _getch();
-            if (map.Traversable(player->MoveEntity(keyboard, map.GetCoordsPlayer())) == true)
+            if (keyboard == 'p')
             {
-                map.SetCoordsPlayer(player->MoveEntity(keyboard, map.GetCoordsPlayer()));
-                action = true;
+
             }
+            else
+            {
+                Coordinates newCoords = player->MoveEntity(keyboard, currentMap.GetCoordsPlayer());
+                if (currentMap.Traversable(newCoords))
+                {
+                    currentMap.SetCoordsPlayer(newCoords.GetX(), newCoords.GetY());
+                    action = true;
+                }
+            }
+
 
             /// Bouger ennemis -> il me faut les fonctions d'Alex
 
@@ -38,17 +47,18 @@ int Game::GameLoop(Map map, Entity* player)
             std::cout << "Game Over.";
             end = true;
         }
-        else if (map.Exit(map.GetCoordsPlayer()))
+        else if (currentMap.Exit(currentMap.GetCoordsPlayer()))
         {
             ChangeMap();
-            GetInstance();
+            InitializeMap();
         }
         else
         {
-            Display(map);
+            Display(currentMap);
         }
-        return 0;
+        
     }
+    return 0;
 }
 
 void Game::EndDelete()
@@ -62,13 +72,24 @@ int Game::ChangeMap()
     return nbMap;
 }
 
-void Game::Display(Map map)
+void Game::InitializeMap()
 {
-    for (int i = 0; i < map.GetSizeMap().GetNbLines(); i++)
+    LevelParser level;
+    if (nbMap == 1)
+        level.GetFromFile(level.GetPathMap1(), currentMap);
+    else if (nbMap == 2)
+        level.GetFromFile(level.GetPathMap2(), currentMap);
+    else if (nbMap == 3)
+        level.GetFromFile(level.GetPathMap3(), currentMap);
+}
+
+void Game::Display()
+{
+    for (int i = 0; i < currentMap.GetSizeMap().GetNbLines(); i++)
     {
-        for (int j = 0; j < map.GetSizeMap().GetNbColumns(); j++)
+        for (int j = 0; j < currentMap.GetSizeMap().GetNbColumns(); j++)
         {
-            if (map.GetCoordsPlayer().GetX() == j && map.GetCoordsPlayer().GetY() == i)
+            if (currentMap.GetCoordsPlayer().GetX() == j && currentMap.GetCoordsPlayer().GetY() == i)
             {
                 std::cout << 'H';
             }
@@ -77,24 +98,24 @@ void Game::Display(Map map)
                 bool ennemi = false;
                 Coordinates coords;
                 coords.SetXY(j, i);
-                if (map.InEnnemies(coords) != -1)
+                if (currentMap.InEnnemies(coords) != -1)
                 {
                     std::cout << 'X';
                     ennemi = true;
                 }
-                if (map.GetMap()[i * map.GetSizeMap().GetNbColumns() + j] == 0 && ennemi == false)
+                if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 0 && ennemi == false)
                 {
                     std::cout << '.';
                 }
-                else if (map.GetMap()[i * map.GetSizeMap().GetNbColumns() + j]== 1 && ennemi == false)
+                else if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 1 && ennemi == false)
                 {
                     std::cout << 'A';
                 }
-                else if (map.GetMap()[i * map.GetSizeMap().GetNbColumns() + j] == 2 && ennemi == false)
+                else if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 2 && ennemi == false)
                 {
                     std::cout << '~';
                 }
-                else if (map.GetMap()[i * map.GetSizeMap().GetNbColumns() + j] == 3 && ennemi == false)
+                else if (currentMap.GetMap()[i * currentMap.GetSizeMap().GetNbColumns() + j] == 3 && ennemi == false)
                 {
                     std::cout << 'E';
                 }
@@ -105,29 +126,18 @@ void Game::Display(Map map)
     }
 }
 
-Map Game::currentMap;
-
 Game* Game::GetInstance()
 {
-    Map map;
-    currentMap = map;
-    LevelParser level;
-    if (nbMap == 1)
-    {
-        level.GetFromFile(level.GetPathMap1(), currentMap);
-    }
-    else if (nbMap == 2)
-    {
-        level.GetFromFile(level.GetPathMap2(), currentMap);
-    }
-    else if (nbMap == 3)
-    {
-        level.GetFromFile(level.GetPathMap3(), currentMap);
-    }
+    object = new Game();
+    return object;
 }
 
 void Game::Run()
 {
+    Map map;
+    currentMap = map;
+    InitializeMap();
+
     Warrior warrior;
     Mage mage;
     Entity* player;
@@ -139,14 +149,16 @@ void Game::Run()
         if (choice == 1)
         {
             player = &warrior;
+            break;
         }
         else if (choice == 2)
         {
             player = &mage;
+            break;
         }
         std::cout << "Number not recognized, try again.\n--> ";
     }
-
-    GameLoop(currentMap, player);
+    system("cls");
+    GameLoop(player);
     EndDelete();
 }
