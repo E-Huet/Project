@@ -1,20 +1,6 @@
 #include <iostream>
 #include "Entity.h"
-#include "Map.h"
 #include "TileInfo.h"
-
-
-bool Entity::CanMove(int new_x, int new_y)
-{
-	if (&Map::CheckLimits)
-	{
-		if (TileInfo::IsTraversable)
-		{
-			return true;
-		}
-	}
-	return false;
-}
 
 int Entity::GetDamage()
 {
