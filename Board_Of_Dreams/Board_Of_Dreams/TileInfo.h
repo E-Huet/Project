@@ -13,7 +13,9 @@ class TileInfo
 	bool swimmable = false;
 
 public : 
-	char GetSymbol(int value);
-	bool IsTraversable(int value);
-	bool IsSwimmable(int value);
+	char GetSymbol();
+	bool IsTraversable();
+	bool IsSwimmable();
+
+	void SetAll(char character, bool boolTraversable, bool boolSwimmable);
 };

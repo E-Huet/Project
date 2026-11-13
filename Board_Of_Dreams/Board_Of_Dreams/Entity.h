@@ -24,4 +24,3 @@ private:
 	int health = 1;
 	int damage = 1;
 };
-

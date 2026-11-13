@@ -1,6 +1,6 @@
 #pragma once
 #include "Player.h"
-class Warrior : Player
+class Warrior : public Player
 {
 protected:
 	virtual ~Warrior() = default;
@@ -11,4 +11,3 @@ private:
 public:
 	virtual void OnEnnemy() override;//inflige des dégats sur l'Ennemies
 };
-

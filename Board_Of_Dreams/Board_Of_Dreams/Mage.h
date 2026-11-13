@@ -1,6 +1,6 @@
 #pragma once
 #include "Player.h"
-class Mage : Player
+class Mage : public Player
 {
 protected:
 	virtual ~Mage() = default;

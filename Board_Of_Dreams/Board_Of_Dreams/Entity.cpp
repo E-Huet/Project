@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "TileInfo.h"
 
+
 int Entity::GetDamage()
 {
 	return damage;

@@ -6,51 +6,35 @@
 
 void LevelParser::GetFromFile(std::string path, Map& map)
 {
-    std::ifstream fichier(path);
+    std::ifstream file(path);
     std::string ligne;
-    if (!fichier) {
+    if (!file) {
         std::cout << "Impossible d'ouvrir le fichier";
-    }
-    int linesCounter = 0;
-    int columnsCounter = 0;
-    int ennemiesCounter = 0;
-
-    while (std::getline(fichier, ligne))
+        return;}
+    int linesCounter = 0, columnsCounter = 0, ennemiesCounter = 0;
+    TileInfo tile;
+    while (std::getline(file, ligne))
     {
-        linesCounter++;
-        for (int i = 0; i < ligne.length(); i++)
-        {
-            if (ligne[i] == '.')
-            {
-                map.AddToMap(0);
-            }
-            else if (ligne[i] == 'A')
-            {
-                map.AddToMap(1);
-            }
-            else if (ligne[i] == '~')
-            {
-                map.AddToMap(2);
-            }
-            else if (ligne[i] == 'E')
-            {
-                map.AddToMap(3);
-            }
-            if (ligne[i] == 'X')
-            {
-                map.AddToMap(0);
+        columnsCounter = 0;
+        for (int i = 0; i < ligne.length(); i++){
+            char character = ligne[i];
+            int value = 0;
+            if (character == 'A') value = 1;
+            else if (character == '~') value = 2;
+            else if (character == 'E') value = 3;
+            else if (character == 'X') {
                 ennemiesCounter++;
                 Coordinates coords;
-                coords.SetXY(i, columnsCounter);
-                map.AddToEnnemies(coords);
-            }
-            columnsCounter++;
-        }
-    }
-    map.GetSizeMap().SetSize(columnsCounter * linesCounter);
-    map.GetSizeMap().SetNbColumns(columnsCounter);
-    map.GetSizeMap().SetNbLines(linesCounter);
-    map.GetSizeMap().SetNbEnnemies(ennemiesCounter);
+                coords.SetXY(i, linesCounter);
+                map.AddToEnnemies(coords);}
+            else if (character == 'H') map.SetCoordsPlayer(i, linesCounter);
+            map.AddToMap(value);
+            tile.SetAll(character, (value == 0 || value == 3), (character == '~'));
+            map.AddToTiles(tile);
+            columnsCounter++;}
+        linesCounter++;}
+    map.GetSizeMap().SetAll(columnsCounter * linesCounter, linesCounter, columnsCounter, ennemiesCounter);
+    file.close();
 }
 
 std::string LevelParser::GetPathMap1()

@@ -11,4 +11,3 @@ void Mage::SpellCast()
 void Mage::OnEnnemy()
 {
 }
-

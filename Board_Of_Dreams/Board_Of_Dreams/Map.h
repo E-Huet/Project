@@ -1,23 +1,33 @@
 #pragma once
 #include <vector>
 #include "Utilities.h"
+#include "TileInfo.h"
 
 class Map
 {
     std::vector<int> map = {};
-    TailleMap size;
+    SizeMap size;
+    std::vector<TileInfo> tiles = {};
+
+    Coordinates coordsPlayer;
+
+    std::vector<Coordinates> ennemies = {};
+
 
 public : 
     //Getter
-    TailleMap GetSizeMap();
+    SizeMap GetSizeMap();
     std::vector<int> GetMap();
-    bool CheckLimits();
+    bool InLimitsMap(Coordinates coords);
     bool Traversable(Coordinates coords);
+    bool Swimmable(Coordinates coords);
     bool Exit(Coordinates coords);
+    Coordinates GetCoordsPlayer();
+    int InEnnemies(Coordinates coords);
 
     //Setter
     void AddToMap(int value);
     void AddToEnnemies(Coordinates coords);
-
-    void DisplayMap();
+    void AddToTiles(TileInfo tileinfo);
+    void SetCoordsPlayer(int x, int y);
 };

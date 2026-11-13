@@ -7,7 +7,7 @@
 #include "Utilities.h"
 
 
-TailleMap Map::GetSizeMap()
+SizeMap Map::GetSizeMap()
 {
 	return size;
 }
@@ -17,6 +17,15 @@ std::vector<int> Map::GetMap()
 	return map;
 }
 
+bool Map::InLimitsMap(Coordinates coords)
+{
+	if (coords.GetX() > GetSizeMap().GetNbColumns() || coords.GetY() > GetSizeMap().GetNbLines() || coords.GetX() < 0 || coords.GetY() < 0)
+	{
+		return false;
+	}
+	return true;
+}
+
 void Map::AddToMap(int value)
 {
 	map.push_back(value);
@@ -24,34 +33,35 @@ void Map::AddToMap(int value)
 
 void Map::AddToEnnemies(Coordinates coords)
 {
-	return;
+	ennemies.push_back(coords);
 }
 
-void Map::DisplayMap()
+void Map::AddToTiles(TileInfo tileinfo)
 {
-	//for (int i = 0; i < nb_lines; i++)
-	//{
-	//	for (int j = 0; j < nb_columns; j++)
-	//	{
-	//		if (player.GetCoordX() == j && player.GetCoordY() == i)
-	//		{
-	//			std::cout << 'H';
-	//		}
-	//		
-	//}
+	tiles.push_back(tileinfo);
 }
 
-bool Map::CheckLimits()
+void Map::SetCoordsPlayer(int x, int y)
 {
-	return false;
+	coordsPlayer.SetXY(x, y);
 }
 
 bool Map::Traversable(Coordinates coords)
 {
-	int temp = coords.TransformMap1D(size);
-	if (map[temp] == 0 || map[temp] == 3)
+	if (InLimitsMap(coords))
 	{
-		return true;
+		int nb = coords.TransformMap1D(size);
+		return tiles[nb].IsTraversable();
+	}
+	return false;
+}
+
+bool Map::Swimmable(Coordinates coords)
+{
+	if (InLimitsMap(coords))
+	{
+		int temp = coords.TransformMap1D(size);
+		return tiles[temp].IsSwimmable();
 	}
 	return false;
 }
@@ -64,4 +74,21 @@ bool Map::Exit(Coordinates coords)
 		return true;
 	}
 	return false;
+}
+
+Coordinates Map::GetCoordsPlayer()
+{
+	return coordsPlayer;
+}
+
+int Map::InEnnemies(Coordinates coords)
+{
+	for (int i = 0; i < GetSizeMap().GetNbEnnemies(); i++)
+	{
+		if (ennemies[i].GetX() == coords.GetX() && ennemies[i].GetY() == coords.GetY())
+		{
+			return i;
+		}
+	}
+	return -1;
 }
