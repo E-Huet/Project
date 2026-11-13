@@ -1,14 +1,24 @@
 #pragma once
 #include "Entity.h"
-class Ennemies :Entity
+class Ennemies : virtual public Entity
 {
-protected:
-	virtual ~Ennemies() = default;//le destructeur
 public:
-	virtual bool CollidingEnemy(Coordinates coord) override;
-	virtual void MoveEntity(char keyboard, Coordinates coord)=0;//les déplacements sont différents entre Headless et Zombies
-private:
-	int creatures_x = 0;
-	int creatures_y = 0;
+	Ennemies(Coordinates startCoords, char entitySymbol, int startHealth, int startDamage)
+		: Entity(startCoords, entitySymbol, startHealth, startDamage)
+	{
+	}
+	~Ennemies() override = default;
+
+	bool CollidingEnemy(Coordinates coord) const;
+
+	// Tour de l'ennemi. 
+	virtual void Act(const Entity& target, const Map& map) = 0;
+};
+
+// Tous les ennemis du niveau 
+using EnnemyList = std::vector<std::unique_ptr<Ennemies>>;
+
+Ennemies* EnnemyAt(const EnnemyList& ennemies, Coordinates coords); // nullptr si aucun
+void RemoveDead(EnnemyList& ennemies);
 
 };

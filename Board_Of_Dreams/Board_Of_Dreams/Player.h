@@ -1,17 +1,24 @@
 #pragma once
+#include <string>
 #include "Entity.h"
-#include "Utilities.h"
-#include <conio.h>
+#include "Enemy.h"
+
+class Map;
 class Player : public Entity
 {
-protected:
-	virtual ~Player() = default; //détruit la classe à la fin 
 public:
-	virtual bool CollidingEnemy(Coordinates coord) override; //renvoie vrai si le Player partage une case avec un Ennemies
-	virtual void MoveEntity(char keyboad, Coordinates direction) override;//Prend un char et les coordonnées actuelles du Player pour le déplacer  selon le char
-	char ReadPlayerInput();//lit l'input du Player
-	virtual void OnEnnemy() = 0;//le Warrior et le Mage ont des interractions différentes en touchant un ennemi
+	Player(int x, int y, int health);
+	~Player() override = default;
+	virtual std::string className() const = 0;
+	virtual bool onEnemyContact(Enemy& enemy) 
+{ return false; }
 
-private:
-	char keyboard = 'a';
+	virtual bool hasSpell() const
+{
+	return false;
+}
+	virtual bool castSpell(EnemyList& enemy)
+{ return false; }
+
+int health=2;
 };

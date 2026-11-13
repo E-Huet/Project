@@ -1,11 +1,22 @@
 #include "Ennemies.h"
 #include "Utilities.h"
 
-bool Ennemies::CollidingEnemy(Coordinates coord)
+bool Ennemies::CollidingEnemy(Coordinates coord) const
 {
-	if (creatures_x == coord.GetX() && creatures_y == coord.GetY())
+	return GetCoords() == coord;
+}
+
+Ennemies* EnnemyAt(const EnnemyList& ennemies, Coordinates coords)
+{
+	for (const std::unique_ptr<Ennemies>& e : ennemies)
 	{
-		return true;
+		if (e->GetCoords() == coords)
+		{
+			return e.get();
+		}
 	}
-	return false;
+	return nullptr;
+}
+void RemoveDead(EnnemyList& ennemies)
+{
 }
